@@ -1,11 +1,20 @@
 import React from 'react';
 import './Detail.css';
 
-function Detail() {
+import { singleRecord } from '../types';
+
+interface DetailProps{
+    record: singleRecord;
+    keys: string[];
+}
+
+function Detail({ record, keys }: DetailProps) {
     return(
-        <div>
-            <h1>Hello World</h1>
-        </div>
+        <>
+            {keys.map((key) => (
+                <td key={key}>{String(record.data[key])}</td>
+            ))}
+        </>
     );
 }
 
