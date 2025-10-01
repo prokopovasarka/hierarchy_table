@@ -1,2 +1,13 @@
 .mainTable{
+    border-collapse: collapse;
+}
+
+.firstRow{
+    background-color: rgb(175, 133, 214);
+    color: white;
+}
+
+th, td {
+  padding: 10px;
+  overflow: hidden;
 }
