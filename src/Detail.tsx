@@ -1,4 +1,3 @@
-import React from 'react';
 import './Detail.css';
 
 import { DetailProps } from './types';
