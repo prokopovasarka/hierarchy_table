@@ -10,13 +10,6 @@ export interface TableProps {
   level?: number;
 };
 
-export interface TableRowProps {
-  item: singleRecord;
-  keys: string[];
-  level: number;
-  nestedTable: (records: singleRecord[], level: number) => ReactNode;
-}
-
 export interface DetailProps{
     record: singleRecord;
     keys: string[];
