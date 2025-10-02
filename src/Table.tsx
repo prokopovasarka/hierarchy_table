@@ -12,14 +12,14 @@ function Table({ tableData, level = 0 }: TableProps) {
       <thead className='firstRow'>
         <tr>
             <th />
-            {keys.map((key) => (
+            { keys.map((key) => (
             <th key={key}>{key}</th>
             ))}
             <th />
         </tr>
       </thead>
       <tbody>
-        {tableData.map((item, rowIndex) => (
+        { tableData.map((item, rowIndex) => (
           <TableRow key={rowIndex} item={item} keys={keys} level={level} nestedTable={(records, newLevel) => (
               <Table tableData={records} level={newLevel} />
           )}/>

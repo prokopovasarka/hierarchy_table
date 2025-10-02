@@ -13,20 +13,19 @@ function TableRow({ item, keys, level, nestedTable }: TableRowProps) {
   return (
     <>
       <tr>
-        {
-            hasChildren ? (
-                <td
-                    onClick={() => setOpen(!open)}
-                      style={{ cursor: item.children ? 'pointer' : 'default', textAlign: 'center' }}
-                    >
-                    {item.children ? (open ? '▾' : '▸') : null}
-                </td>
-            ) : <td />
+        { hasChildren ? (
+              <td
+                  onClick={() => setOpen(!open)}
+                    style={{ cursor: item.children ? 'pointer' : 'default', textAlign: 'center' }}
+                  >
+                  {item.children ? (open ? '▾' : '▸') : null}
+              </td>
+          ) : <td />
         }
         <Detail record={item} keys={keys} />
       </tr>
 
-      {open &&
+      { open &&
         item.children &&
         Object.entries(item.children).map(([childKey, childVal], idx) => (
           <tr key={idx}>
