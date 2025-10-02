@@ -1,12 +1,7 @@
 import React from 'react';
 import './Detail.css';
 
-import { singleRecord } from '../types';
-
-interface DetailProps{
-    record: singleRecord;
-    keys: string[];
-}
+import { DetailProps } from './types';
 
 function Detail({ record, keys }: DetailProps) {
     return(

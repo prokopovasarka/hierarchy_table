@@ -3,7 +3,7 @@ import './App.css';
 import Table from './Table'
 
 import data from './data/example-data.json';
-import { singleRecord } from '../types';
+import { singleRecord } from './types';
 
 function App() {
   const[inputData, setData] = useState<singleRecord[]>([]);
@@ -11,6 +11,7 @@ function App() {
   useEffect(() => {
     setData(data as singleRecord[]);
   }, []);
+
 
   return (
     <div className="App">

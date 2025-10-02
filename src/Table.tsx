@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Table.css';
 import Detail from './Detail';
-import { singleRecord } from '../types';
+import { singleRecord, TableProps } from './types';
 
-interface TableProps {
-  tableData: singleRecord[];
-  level?: number;
-}
-
-function TableRow({ item, keys, level }: { item: singleRecord; keys: string[]; level: number }) {
+function TableRow({ item, keys, level }: { item: singleRecord; keys: string[]; level: number;  }) {
   const [open, setOpen] = useState(false);
 
   const hasChildren = item.children && Object.values(item.children).some(
@@ -36,7 +31,7 @@ function TableRow({ item, keys, level }: { item: singleRecord; keys: string[]; l
         Object.entries(item.children).map(([childKey, childVal], idx) => (
           <tr key={idx}>
             <td colSpan={keys.length + 1}>
-              <Table tableData={childVal.records} level={level + 1} />
+              <Table tableData={childVal.records} level={level + 1}/>
             </td>
           </tr>
         ))}
@@ -62,7 +57,7 @@ function Table({ tableData, level = 0 }: TableProps) {
       </thead>
       <tbody>
         {tableData.map((item, rowIndex) => (
-          <TableRow key={rowIndex} item={item} keys={keys} level={level} />
+          <TableRow key={rowIndex} item={item} keys={keys} level={level}/>
         ))}
       </tbody>
     </table>
