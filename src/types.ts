@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 
 export interface singleRecord {
   data: Record<string, any>;
