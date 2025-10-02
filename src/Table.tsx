@@ -1,43 +1,6 @@
-import { useState } from 'react';
 import './Table.css';
-import Detail from './Detail';
-import { singleRecord, TableProps } from './types';
-
-function TableRow({ item, keys, level }: { item: singleRecord; keys: string[]; level: number;  }) {
-  const [open, setOpen] = useState(false);
-
-  const hasChildren = item.children && Object.values(item.children).some(
-    (child: any) => Array.isArray(child.records) && child.records.length > 0
-  );
-
-  return (
-    <>
-      <tr>
-        {
-            hasChildren ? (
-                <td
-                    onClick={() => setOpen(!open)}
-                      style={{ cursor: item.children ? 'pointer' : 'default', textAlign: 'center' }}
-                    >
-                    {item.children ? (open ? '▾' : '▸') : null}
-                </td>
-            ) : <td />
-        }
-        <Detail record={item} keys={keys} />
-      </tr>
-
-      {open &&
-        item.children &&
-        Object.entries(item.children).map(([childKey, childVal], idx) => (
-          <tr key={idx}>
-            <td colSpan={keys.length + 1}>
-              <Table tableData={childVal.records} level={level + 1}/>
-            </td>
-          </tr>
-        ))}
-    </>
-  );
-}
+import { TableProps } from './types';
+import TableRow from './TableRow';
 
 function Table({ tableData, level = 0 }: TableProps) {
   if (!tableData || tableData.length === 0) return null;
@@ -57,7 +20,9 @@ function Table({ tableData, level = 0 }: TableProps) {
       </thead>
       <tbody>
         {tableData.map((item, rowIndex) => (
-          <TableRow key={rowIndex} item={item} keys={keys} level={level}/>
+          <TableRow key={rowIndex} item={item} keys={keys} level={level} nestedTable={(records, newLevel) => (
+              <Table tableData={records} level={newLevel} />
+          )}/>
         ))}
       </tbody>
     </table>
